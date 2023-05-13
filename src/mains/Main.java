@@ -5,6 +5,7 @@ import java.io.FileWriter;
 
 import collectors.*;
 import compiledLogGenerator.SemesterLogGenerator;
+import eventGenerator.EventGenerator;
 import tools.CSVParser;
 import tools.LogWriter;
 public class Main {
@@ -16,24 +17,26 @@ public class Main {
 		try {
 			
 
-			File data=new File("InputFolders/Comp524/Fall2020");
-			File output=new File("NewVersionTest");
+//			File data=new File("E:\\submissions_2\\Assignment 1");
+			File data = new File(args[0]);
+//			File output = new File("C:\\Users\\Zhizhou\\git\\Hermes_Log_Parser\\NewVersionTest");
+			File output=new File("LocalChecks Logs");
 
 
 
-//			new EventGenerator().readData(data, output);
+			new EventGenerator().readData(data, output);
+//			
+//			Collector [] collectors = {
+//					new PercentPassedCollector(4),
+//					new AttemptsCollector(),
+//					new BreakTimeCollector(breakTime),
+//					new FinalStatusCollector(),
+//					new WorkTimeCollector(breakTime),
+////					new KnownTimeCollector()
+////					new WorkTimeStatisticsCollector()
+//			};
 			
-			Collector [] collectors = {
-					new PercentPassedCollector(4),
-					new AttemptsCollector(),
-					new BreakTimeCollector(breakTime),
-					new FinalStatusCollector(),
-					new WorkTimeCollector(breakTime),
-//					new KnownTimeCollector()
-//					new WorkTimeStatisticsCollector()
-			};
-			
-			new SemesterLogGenerator(collectors,true,"assignment#.csv").readData(data, output);
+//			new SemesterLogGenerator(collectors,true,"assignment#.csv").readData(data, output);
 //			fixCSVData();
 			
 		} catch (Exception e) {

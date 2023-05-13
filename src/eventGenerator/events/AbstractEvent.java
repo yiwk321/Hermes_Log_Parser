@@ -42,8 +42,8 @@ public abstract class AbstractEvent implements Event{
 		return false;
 	}
 	
-	private static final SimpleDateFormat assignmentLogsDateFormat=new SimpleDateFormat("EEE MMM dd kk:mm:ss zzz yyyy");
-	private static final SimpleDateFormat eventDateFormat=new SimpleDateFormat("dd/MM/yyyy kk:mm:ss");
+	private static final SimpleDateFormat assignmentLogsDateFormat=new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+	private static final SimpleDateFormat eventDateFormat=new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 	protected long secondsBetween(String date1, String date2) throws ParseException{
 		Date first=assignmentLogsDateFormat.parse(date1);
 		Date second=assignmentLogsDateFormat.parse(date2);

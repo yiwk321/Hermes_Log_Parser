@@ -24,7 +24,7 @@ public class LogReader {
 	}
 	
 	public List<List<String>> getAllStudentsAssignmentLogLines(int assignmentIndex) throws FileNotFoundException{
-		Iterator<File> assignmentLogIterator=allAssignmentIterators.get(assignmentIndex);
+		Iterator<File> assignmentLogIterator=allAssignmentIterators.get(0);
 		if(assignmentLogIterator==null)
 			return null;
 		
@@ -60,18 +60,41 @@ public class LogReader {
 	}
 	
 	private static String determineStudentName(File log){
-		Matcher studentID=Pattern.compile(".*\\\\(.*)\\\\.*").matcher(log.toString());
-		if(studentID.find())
-			return "\""+studentID.group(1)+"\"";
-		else
-			return "I am error";
+//		Matcher studentID=Pattern.compile(".*\\\\(.*)\\\\.*").matcher(log.toString());
+//		Matcher studentID=Pattern.compile("\\(").matcher(log.toString());
+//		if(studentID.find()) {
+//			String name = studentID.group(0);
+//			name = name.substring("Assignment 1\\\\".length(),name.lastIndexOf("\\\\"));
+//			return name;
+//		} else
+//			return "I am error";
+		
+		
+//		while(!log.getName().contains("Submission")) {
+//			log = log.getParentFile();
+//		}
+//		log = log.getParentFile();
+//		return log.getName();
+		if (log.getPath().contains("Submission attachment")) {
+			log = new File(log.getPath().substring(0, log.getPath().indexOf("Submission attachment")-1));
+			return log.getName();
+		} else if (log.getPath().contains("submission_")) {
+			String name = log.getName();
+			while (log.getPath().contains("submission_")) {
+				name = log.getName();
+				log = log.getParentFile();
+			}
+			return name;
+		}
+		return	log.getParentFile().getParentFile().getParentFile().getParentFile().getName();
+//		return "Logs";
 	}
 	
 	private static List<Iterator<File>> getAllAssignmentIterators(File location){
 		ArrayList<Iterator<File>> allAssignments=new ArrayList<Iterator<File>>();
-		for(int i=0;i<13;i++){
-			String assignmentNumber = i==0?i+"_1":Integer.toString(i);
-			
+//		for(int i=0;i<13;i++){
+//			String assignmentNumber = i==0?i+"_1":Integer.toString(i);
+			String assignmentNumber = location.getName().substring(location.getName().toLowerCase().indexOf("assignment")+"assignment".length()+1);
 			Iterator<File> testVal=new AssignmentLogIterator(location,assignmentNumber);
 			if(testVal.hasNext())
 				allAssignments.add(testVal);
@@ -79,7 +102,7 @@ public class LogReader {
 				allAssignments.add(null);
 //			else
 //				break;
-		}
+//		}
 		return allAssignments;
 	}
 }

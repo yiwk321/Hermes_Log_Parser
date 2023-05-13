@@ -19,11 +19,12 @@ public class EventGenerator {
 		
 		LogReader logReader = new LogReader(location);
 		
-		for(int assignmentIndex=0;assignmentIndex<logReader.getNumAssignments();assignmentIndex++){
-			
-			List<List<String>> allAssignmentLines = logReader.getAllStudentsAssignmentLogLines(assignmentIndex);
+//		for(int assignmentIndex=0;assignmentIndex<logReader.getNumAssignments();assignmentIndex++){
+			int assignmentIndex = Integer.parseInt(location.getName().substring(location.getName().toLowerCase().indexOf("assignment")+"assignment".length()+1));
+
+			List<List<String>> allAssignmentLines = logReader.getAllStudentsAssignmentLogLines(0);
 			if(allAssignmentLines==null)
-				continue;
+				return;
 			
 			List<String> studentNames = logReader.getStudentNames();
 			
@@ -38,6 +39,10 @@ public class EventGenerator {
 			
 			String path=output.toString()+"/assignment"+assignmentIndex+"_events.csv";
 			File outputData=new File(path);
+			outputData.mkdirs();
+			if (outputData.exists()) {
+				outputData.delete();
+			}
 			outputData.createNewFile();
 			FileWriter dataOut=new FileWriter(outputData);
 			
@@ -63,7 +68,7 @@ public class EventGenerator {
 				}
 			}
 			dataOut.close();
-		}
+//		}
 		
 		
 	}
