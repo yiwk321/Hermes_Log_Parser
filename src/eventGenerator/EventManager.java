@@ -44,7 +44,7 @@ public class EventManager {
 			if(collector.getRequiredPass()==Integer.MAX_VALUE)
 				collector.logData(lastLine,name);
 	}
-	
+	// cortresponds to CollectorManager getOrderedHeaders
 	public String [] getOrderedHeaders(){
 		return eventHeaders;
 	}

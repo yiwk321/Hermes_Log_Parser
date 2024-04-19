@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
+//corresponds to AbstractCollector in GraderBasics
 public abstract class AbstractEvent implements Event{
 
 	protected int reqPass;
@@ -50,7 +50,7 @@ public abstract class AbstractEvent implements Event{
 		long secondsBetween=TimeUnit.SECONDS.convert(second.getTime()-first.getTime(), TimeUnit.MILLISECONDS);
 		return secondsBetween;
 	}
-	
+	// in AbsstractEventcollector
 	protected String convertDate(String date) throws ParseException {
 		Date conv = assignmentLogsDateFormat.parse(date);
 		return eventDateFormat.format(conv);

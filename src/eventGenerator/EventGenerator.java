@@ -11,7 +11,7 @@ import eventGenerator.events.WorkingOnEvent;
 import tools.LogReader;
 import tools.LogWriter;
 import tools.TestingData;
-
+//equivalent of gradingTools.logs.localChecksStatistics.compiledLogGenerator.SemesterLogGenerator
 public class EventGenerator {
 
 	

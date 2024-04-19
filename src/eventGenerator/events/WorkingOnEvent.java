@@ -3,7 +3,7 @@ package eventGenerator.events;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-
+//corresponds to WorkTimeCollector
 public class WorkingOnEvent extends AbstractEvent{
 
 	
